@@ -11,7 +11,9 @@ function PedidoForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+    <div className="ticket p-4">
+      <span className="ticket-code">Ficha de finalização</span>
+      <Form onSubmit={handleSubmit(onSubmit)}>
       <h2>Seus Dados</h2>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridNome">
@@ -85,7 +87,8 @@ function PedidoForm() {
       <Button variant="success" type="submit">
         Finalizar Pedido
       </Button>
-    </Form>
+      </Form>
+    </div>
   );
 }
 

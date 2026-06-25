@@ -1,111 +1,422 @@
+/* ============================================================
+   PIZZARIA DIGITAL — Design System
+   Conceito: "Comanda de cozinha" — cada pizza, cada item do
+   carrinho e cada formulário vira uma ficha/comanda de pedido,
+   com furos de perfuração, código numerado e fonte de máquina
+   de tíquete, como as fichas que saem na cozinha de uma pizzaria.
+   ============================================================ */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --tomato: #c8392b;
+  --tomato-dark: #a32c20;
+  --tomato-light: #e2604f;
+  --charcoal: #251a14;
+  --charcoal-soft: #3a2b22;
+  --crust: #6b4226;
+  --paper: #f3e6c8;
+  --paper-light: #fffaf0;
+  --basil: #46663b;
+  --basil-dark: #34501f;
+  --mustard: #d99a2b;
+  --mustard-dark: #b87b16;
+  --ink: #2b2017;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --font-display: "Bricolage Grotesque", "Work Sans", sans-serif;
+  --font-accent: "Caveat", cursive;
+  --font-body: "Work Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+html,
+body {
+  margin: 0;
+  min-height: 100%;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(107, 66, 38, 0.07) 1px, transparent 0);
+  background-size: 18px 18px;
+  -webkit-font-smoothing: antialiased;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+
+#root {
+  min-height: 100vh;
 }
-p {
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-weight: 800; }
+h2, h3 { font-weight: 700; }
+
+a {
+  color: var(--tomato-dark);
+}
+
+/* ---------- Header / Navbar (placa da pizzaria) ---------- */
+
+.navbar {
+  background: var(--charcoal) !important;
+  background-image: linear-gradient(180deg, var(--charcoal-soft), var(--charcoal)) !important;
+  border-bottom: 4px solid var(--tomato);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.navbar-brand {
+  font-family: var(--font-accent);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--paper-light) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transform: rotate(-2deg);
+}
+
+.navbar-brand::before {
+  content: "🍕";
+  font-family: initial;
+  transform: rotate(8deg);
+  display: inline-block;
+}
+
+.navbar .nav-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: rgba(255, 250, 240, 0.85) !important;
+  position: relative;
+  margin: 0 0.35rem;
+  padding: 0.4rem 0.2rem !important;
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--mustard);
+  transition: width 0.18s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--paper-light) !important;
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: 100%;
+}
+
+.navbar .badge {
+  background-color: var(--tomato) !important;
+  font-family: var(--font-mono);
+}
+
+.navbar-text {
+  font-family: var(--font-body);
+  color: var(--paper-light) !important;
+}
+
+.navbar .btn-outline-light {
+  border-color: rgba(255, 250, 240, 0.5);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.3rem 1rem;
+}
+
+.navbar .btn-outline-light:hover {
+  background-color: var(--mustard);
+  border-color: var(--mustard);
+  color: var(--charcoal);
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 250, 240, 0.4) !important;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  background: var(--charcoal) !important;
+  border-top: 4px solid var(--tomato);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: rgba(255, 250, 240, 0.65) !important;
+}
+
+/* ---------- Botões (carimbo de cozinha) ---------- */
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  border-radius: 7px;
+  border-width: 2px;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.btn:active {
+  transform: scale(0.96) rotate(-0.4deg);
+}
+
+.btn-primary {
+  background-color: var(--tomato) !important;
+  border-color: var(--tomato-dark) !important;
+  color: var(--paper-light) !important;
+  box-shadow: 0 3px 0 var(--tomato-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--tomato-dark) !important;
+  border-color: var(--tomato-dark) !important;
+}
+
+.btn-success {
+  background-color: var(--basil) !important;
+  border-color: var(--basil-dark) !important;
+  color: var(--paper-light) !important;
+  box-shadow: 0 3px 0 var(--basil-dark);
+}
+
+.btn-success:hover {
+  background-color: var(--basil-dark) !important;
+}
+
+.btn-warning {
+  background-color: var(--mustard) !important;
+  border-color: var(--mustard-dark) !important;
+  color: var(--charcoal) !important;
+  box-shadow: 0 3px 0 var(--mustard-dark);
+}
+
+.btn-warning:hover {
+  background-color: var(--mustard-dark) !important;
+}
+
+.btn-danger {
+  background-color: transparent !important;
+  border-color: var(--tomato) !important;
+  color: var(--tomato-dark) !important;
+  box-shadow: none;
+}
+
+.btn-danger:hover {
+  background-color: var(--tomato) !important;
+  color: var(--paper-light) !important;
+}
+
+.btn-outline-light { font-family: var(--font-body); }
+
+/* ---------- Comanda / Ticket (elemento de assinatura) ---------- */
+/* Usado nos cards de pizza, itens do carrinho e nos painéis de
+   formulário — simula a ficha perfurada que sai da cozinha. */
+
+.card,
+.ticket {
+  background: var(--paper-light) !important;
+  border: 2px solid var(--crust) !important;
+  border-radius: 2px !important;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(107, 66, 38, 0.18);
+}
+
+.card::before,
+.ticket::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background-image: radial-gradient(circle, var(--paper) 7px, transparent 7.5px);
+  background-size: 22px 22px;
+  background-position: -2px -7px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+}
+
+.card-body {
+  font-family: var(--font-body);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.ticket-code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--crust);
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 1px dashed var(--crust);
+  margin-bottom: 0.4rem;
+}
+
+.price-tag {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--tomato-dark);
+}
+
+/* ---------- Formulários ---------- */
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--charcoal-soft);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--paper-light) !important;
+  border: 2px solid var(--crust) !important;
+  border-radius: 4px !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--tomato) !important;
+  box-shadow: 0 0 0 3px rgba(200, 57, 43, 0.18) !important;
+}
+
+.form-control::placeholder {
+  color: rgba(43, 32, 23, 0.4);
+}
+
+.text-danger {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* ---------- Alertas ---------- */
+
+.alert {
+  border-radius: 4px;
+  border-width: 2px;
+  font-family: var(--font-body);
+}
+
+.alert-danger {
+  background-color: #fbeae7 !important;
+  border-color: var(--tomato) !important;
+  color: var(--tomato-dark) !important;
+}
+
+.alert-info {
+  background-color: #eef2e9 !important;
+  border-color: var(--basil) !important;
+  color: var(--basil-dark) !important;
+}
+
+/* ---------- Hero (página inicial) ---------- */
+
+.hero {
+  position: relative;
+  padding: 3.5rem 1rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--tomato-dark);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  margin-bottom: 0.6rem;
+}
+
+.hero-title .accent {
+  font-family: var(--font-accent);
+  color: var(--tomato);
+  font-weight: 700;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  max-width: 38rem;
+  margin: 0 auto 1.75rem;
+  color: var(--charcoal-soft);
+}
+
+.hero-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--paper-light);
+  border: 2px dashed var(--crust);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  transform: rotate(-1.5deg);
+}
+
+.feature-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.feature-strip .feature {
+  background: var(--paper-light);
+  border: 2px solid var(--crust);
+  border-radius: 4px;
+  padding: 1.1rem 1rem;
+  text-align: left;
+  box-shadow: 3px 3px 0 rgba(107, 66, 38, 0.15);
+}
+
+.feature .feature-icon {
+  font-size: 1.5rem;
+}
+
+.feature h3 {
+  font-size: 1rem;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.feature p {
+  font-size: 0.88rem;
+  color: var(--charcoal-soft);
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+@media (max-width: 576px) {
+  .hero {
+    padding: 2.5rem 0.5rem 3rem;
+  }
 }

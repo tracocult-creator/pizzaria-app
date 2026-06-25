@@ -33,38 +33,41 @@ function LoginPage() {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <p>Acesse sua conta para fazer pedidos.</p>
-      <Alert variant="info">
-        Use <strong>teste@pizzaria.com</strong> / <strong>123456</strong> para entrar.
-      </Alert>
-      {loginError && <Alert variant="danger">{loginError}</Alert>}
-      <Form onSubmit={handleSubmit(onSubmit)} className="mt-4">
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Digite seu email"
-            {...register('email', { required: 'Email é obrigatório' })}
-          />
-          {errors.email && <p className="text-danger">{errors.email.message}</p>}
-        </Form.Group>
+    <div className="d-flex justify-content-center">
+      <div className="ticket p-4 mt-4" style={{ maxWidth: '420px', width: '100%' }}>
+        <span className="ticket-code">Acesso do cliente</span>
+        <h1>Login</h1>
+        <p className="text-muted">Acesse sua conta para fazer pedidos.</p>
+        <Alert variant="info">
+          Use <strong>teste@pizzaria.com</strong> / <strong>123456</strong> para entrar.
+        </Alert>
+        {loginError && <Alert variant="danger">{loginError}</Alert>}
+        <Form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Digite seu email"
+              {...register('email', { required: 'Email é obrigatório' })}
+            />
+            {errors.email && <p className="text-danger">{errors.email.message}</p>}
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Senha"
-            {...register('password', { required: 'Senha é obrigatória' })}
-          />
-          {errors.password && <p className="text-danger">{errors.password.message}</p>}
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Senha"
+              {...register('password', { required: 'Senha é obrigatória' })}
+            />
+            {errors.password && <p className="text-danger">{errors.password.message}</p>}
+          </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Entrar
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit" className="w-100">
+            Entrar
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

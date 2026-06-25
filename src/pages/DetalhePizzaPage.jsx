@@ -55,7 +55,7 @@ function DetalhePizzaPage() {
   }
 
   return (
-    <Card className="mt-4">
+    <Card className="mt-4" style={{ maxWidth: '480px' }}>
       <Card.Img
         variant="top"
         src={pizza.image}
@@ -63,12 +63,15 @@ function DetalhePizzaPage() {
         style={{ maxHeight: '300px', objectFit: 'cover' }}
       />
       <Card.Body>
+        <span className="ticket-code">Pedido nº {String(pizza.id).replace(/\D/g, '').padStart(3, '0')}</span>
         <Card.Title as="h1">{pizza.name}</Card.Title>
         <Card.Text>{pizza.description}</Card.Text>
-        <h4>Preço: R$ {pizza.price.toFixed(2)}</h4>
-        <Button variant="primary" onClick={handleAddToCart}>
-          Adicionar ao Carrinho
-        </Button>
+        <div className="d-flex justify-content-between align-items-center">
+          <span className="price-tag fs-4">R$ {pizza.price.toFixed(2)}</span>
+          <Button variant="primary" onClick={handleAddToCart}>
+            Adicionar ao Carrinho
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

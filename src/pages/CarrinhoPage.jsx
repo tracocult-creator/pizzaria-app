@@ -26,30 +26,36 @@ function CarrinhoPage() {
         </p>
       ) : (
         <>
-          <ListGroup>
-            {cartState.items.map((item) => (
-              <ListGroup.Item key={item.id}>
-                <Row className="align-items-center">
-                  <Col xs={6}>{item.name} (x{item.quantity})</Col>
-                  <Col xs={3}>R$ {(item.price * item.quantity).toFixed(2)}</Col>
-                  <Col xs={3} className="text-end">
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleRemoveItem(item.id)}
-                    >
-                      Remover
-                    </Button>
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-          <h3 className="mt-3">Total: R$ {cartState.total.toFixed(2)}</h3>
-          <Button variant="warning" onClick={handleClearCart} className="mt-3">
-            Limpar Carrinho
-          </Button>
-          <hr className="my-4" />
+          <div className="ticket p-3 mb-4">
+            <span className="ticket-code">Comanda · {cartState.items.length} item(ns)</span>
+            <ListGroup variant="flush">
+              {cartState.items.map((item) => (
+                <ListGroup.Item key={item.id} className="bg-transparent px-0">
+                  <Row className="align-items-center">
+                    <Col xs={6}>{item.name} <span className="text-muted">(x{item.quantity})</span></Col>
+                    <Col xs={3} className="price-tag">R$ {(item.price * item.quantity).toFixed(2)}</Col>
+                    <Col xs={3} className="text-end">
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => handleRemoveItem(item.id)}
+                      >
+                        Remover
+                      </Button>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+            <hr />
+            <div className="d-flex justify-content-between align-items-center">
+              <h3 className="mb-0">Total</h3>
+              <span className="price-tag fs-4">R$ {cartState.total.toFixed(2)}</span>
+            </div>
+            <Button variant="warning" onClick={handleClearCart} className="mt-3">
+              Limpar Carrinho
+            </Button>
+          </div>
           <PedidoForm />
         </>
       )}
