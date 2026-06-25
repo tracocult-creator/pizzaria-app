@@ -9,7 +9,7 @@ function CardapioPage() {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    // Simular um atraso de rede
+     
     const timer = setTimeout(() => {
       try {
         setPizzas(pizzasData);

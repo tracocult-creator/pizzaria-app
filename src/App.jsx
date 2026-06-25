@@ -22,12 +22,12 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/pizza/:id" element={<DetalhePizzaPage />} />
 
-          {/* Rotas Protegidas */}
+         
           <Route element={<ProtectedRoute />}>
             <Route path="/carrinho" element={<CarrinhoPage />} />
           </Route>
 
-          {/* Rota para 404 - Página não encontrada */}
+           
           <Route path="*" element={<h1>404 - Página Não Encontrada</h1>} />
         </Routes>
       </Container>

@@ -9,7 +9,6 @@ function CardapioPage() {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    // Simular um atraso de rede
     const timer = setTimeout(() => {
       try {
         setPizzas(pizzasData);
@@ -33,11 +32,9 @@ function CardapioPage() {
       </div>
     );
   }
-
   if (error) {
     return <Alert variant="danger">Erro: {error}</Alert>;
   }
-
   return (
     <div>
       <h1>Nosso Cardápio</h1>

@@ -1,12 +1,12 @@
 import React, { createContext, useReducer, useEffect, useContext } from 'react';
 
-// 1. Definir o estado inicial do carrinho
+ 
 const initialState = {
   items: [],
   total: 0,
 };
 
-// 2. Definir a função reducer
+ 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
@@ -78,10 +78,10 @@ const cartReducer = (state, action) => {
   }
 };
 
-// 3. Criar o Contexto
+ 
 export const CartContext = createContext(initialState);
 
-// 4. Criar o Provider
+ 
 export const CartProvider = ({ children }) => {
   const storedCart = JSON.parse(localStorage.getItem('cart')) || initialState;
   const [cartState, dispatch] = useReducer(cartReducer, storedCart);
@@ -97,7 +97,7 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// 5. Hook customizado
+ 
 export const useCart = () => {
   return useContext(CartContext);
 };

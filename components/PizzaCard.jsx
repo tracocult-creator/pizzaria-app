@@ -5,7 +5,6 @@ import { useCart } from '../context/CartContext';
 
 function PizzaCard({ pizza }) {
   const { dispatch } = useCart();
-
   const handleAddToCart = () => {
     dispatch({ type: 'ADD_ITEM', payload: pizza });
     alert(`${pizza.name} adicionada ao carrinho!`);

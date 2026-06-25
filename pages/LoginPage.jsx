@@ -10,7 +10,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(null);
 
-  // Se já estiver autenticado, redirecionar para a home
+ 
   React.useEffect(() => {
     if (isAuthenticated) {
       navigate('/');
@@ -18,7 +18,6 @@ function LoginPage() {
   }, [isAuthenticated, navigate]);
 
   const onSubmit = (data) => {
-    // Simular chamada de API de login
     if (data.email === 'teste@pizzaria.com' && data.password === '123456') {
       const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlVzdWFyaW8gVGVzdGUiLCJpYXQiOjE1MTYyMzkwMjJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
       login(fakeToken);
